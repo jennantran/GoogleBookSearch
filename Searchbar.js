@@ -3,15 +3,25 @@ import './Searchbar.css';
 
 
 class Searchbar extends Component{
+    constructor(props) {
+        super(props)
+      }
+
+    searchChanged(search){
+        this.setState({
+          searchTerm: search
+        })
+      }
     render(){
         return(
             <div className="searchbar">
-                <form className="searchbar_form">
+                <form onSubmit={ e => this.props.handleSubmit(e)} className="searchbar_form">
                     <label htmlFor="search">Search:</label>
                         <input
                             type="searchBook"
                             name="searchBook"
                             id="searchBook"
+                            onChange={ e => this.searchChanged(e.target.value) }
                             placeholder="Henry">
                         </input>
                     <div className="searchbar_button">
@@ -21,6 +31,7 @@ class Searchbar extends Component{
             </div>
         );
     }
-}
+    }
+
 
 export default Searchbar;

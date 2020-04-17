@@ -12,15 +12,22 @@ class Filterbar extends Component{
                             className="filterPrint"
                             id="filterPrint">
                                 <option>All</option>
+                                <option>books</option>
+                                <option>magazines</option> 
                         </select>
                 </form>
                 <form className="filterBookTypeForm">
-                     <label htmlFor="printType">Book Type:</label>
+                     <label htmlFor="bookType">Book Type:</label>
                         <select
                             type="filterBook"
                             className="filterBook"
                             id="filterBook">
                                 <option>No Filter</option>
+                                <option>partial</option>
+                                <option>full</option>
+                                <option>free-ebooks</option>
+                                <option>paid-ebooks</option>
+                                <option>ebooks</option>
                         </select>
                 </form>
             </div>
