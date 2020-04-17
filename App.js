@@ -17,17 +17,21 @@ class App extends Component {
       };
     }
 
-    
 
-    handleSubmit(event){
+  handleSubmit(event){
+      const baseUrl = `https://www.googleapis.com/books/v1/volumes?q=`;
+      const term = this.state.searchTerm;
+     
+      const filter = this.state.filter;
+      const print = this.state.printType;
+      const key = this.state.apiKey;
+      const url = baseUrl + term + '&filter=' + filter + '&printType=' + print + '&key=' + key;
+
       event.preventDefault();
-      // this.setState({
-      //   filter: document.getElementById('filterPrint'),
-      //   printType: document.getElementById('filterBook')
-      // })
       console.log(this.state);
+
       
-    fetch(`https://www.googleapis.com/books/v1/volumes?q=`+ this.state.searchTerm+ `&filter=` + this.state.filter + `&printType` + this.state.printType + `&key=` + this.state.apiKey`)
+    fetch(url)
       .then(response => {
         if(!response.ok){
           throw new Error('Something went wrong, please try again later!')
