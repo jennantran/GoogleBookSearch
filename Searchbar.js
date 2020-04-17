@@ -7,11 +7,11 @@ class Searchbar extends Component{
         super(props)
       }
 
-    searchChanged(search){
-        this.setState({
-          searchTerm: search
-        })
-      }
+    // searchChanged(search){
+    //     this.setState({
+    //       searchTerm: search
+    //     })
+    //   }
     render(){
         return(
             <div className="searchbar">
@@ -21,7 +21,7 @@ class Searchbar extends Component{
                             type="searchBook"
                             name="searchBook"
                             id="searchBook"
-                            onChange={ e => this.searchChanged(e.target.value) }
+                            onChange={ e => this.props.search(e.target.value) }
                             placeholder="Henry">
                         </input>
                     <div className="searchbar_button">

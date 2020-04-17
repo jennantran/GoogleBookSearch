@@ -16,16 +16,18 @@ class App extends Component {
         error: null
       };
     }
-
+   searchChanged(search){
+        this.setState({
+          searchTerm: search
+        })
+      }
 
   handleSubmit(event){
       const baseUrl = `https://www.googleapis.com/books/v1/volumes?q=`;
-      const term = this.state.searchTerm;
-     
       const filter = this.state.filter;
       const print = this.state.printType;
       const key = this.state.apiKey;
-      const url = baseUrl + term + '&filter=' + filter + '&printType=' + print + '&key=' + key;
+      const url = baseUrl + this.state.searchTerm + '&filter=' + filter + '&printType=' + print + '&key=' + key;
 
       event.preventDefault();
       console.log(this.state);
@@ -53,7 +55,7 @@ class App extends Component {
       return (
         <div className="App">
           <header>Google Book Search</header>
-            <Searchbar handleSubmit={e => this.handleSubmit(e)}/>
+            <Searchbar handleSubmit={e => this.handleSubmit(e)} search={e => this.searchChanged(e)}/>
             <Filterbar/>
             <BookList data={this.state.data}/>
         </div>
