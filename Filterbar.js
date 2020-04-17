@@ -20,6 +20,7 @@ class Filterbar extends Component{
                 <form className="filterBookTypeForm">
                      <label htmlFor="bookType">Book Type:</label>
                         <select
+                            onChange={e => this.props.bktype(e.target.value)}
                             type="filterBook"
                             className="filterBook"
                             id="filterBook">

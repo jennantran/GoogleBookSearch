@@ -9,8 +9,8 @@ class App extends Component {
       super(props);
       this.state = {
         searchTerm: "",
-        filter: null,
-        printType: null,
+        bookType: "",
+        printType: 'all',
         apiKey: 'AIzaSyB2SLy8hDROXstVznhBlM6FN7EwQE4HR_c',
         books: [],
         error: null
@@ -28,11 +28,16 @@ class App extends Component {
       })
     }
 
+    bookTypeChange(bktype){
+      this.setState({
+        bookType: bktype
+      })
+    }
   handleSubmit(event){
       const baseUrl = `https://www.googleapis.com/books/v1/volumes?q=`;
       const filter = this.state.filter;
       const key = this.state.apiKey;
-      const url = baseUrl + this.state.searchTerm + '&filter=' + filter + '&printType=' + this.state.printType + '&key=' + key;
+      const url = baseUrl + this.state.searchTerm + '&filter=' + this.state.bookType + '&printType=' + this.state.printType + '&key=' + key;
 
       event.preventDefault();
       console.log(this.state);
@@ -46,8 +51,9 @@ class App extends Component {
         return response.json();
       })
       .then(data => {
+        console.log(data);
         this.setState({
-          books: data
+          books: data.items
         });
       })
       .catch(err => {
@@ -61,8 +67,8 @@ class App extends Component {
         <div className="App">
           <header>Google Book Search</header>
             <Searchbar handleSubmit={e => this.handleSubmit(e)} search={e => this.searchChanged(e)}/>
-            <Filterbar  type={e => this.printTypeChange(e)}/>
-            <BookList data={this.state.data}/>
+            <Filterbar  type={e => this.printTypeChange(e)} bktype={e => this.bookTypeChange(e)}/>
+            <BookList bookItems={this.state.books}/>
         </div>
     );
   }
