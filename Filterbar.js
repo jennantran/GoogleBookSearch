@@ -8,6 +8,7 @@ class Filterbar extends Component{
                 <form className="filterbar_form">
                     <label htmlFor="printType">Print:</label>
                         <select
+                            onChange={e => this.props.type(e.target.value)}
                             type="filterPrint"
                             className="filterPrint"
                             id="filterPrint">

@@ -7,11 +7,7 @@ class Searchbar extends Component{
         super(props)
       }
 
-    // searchChanged(search){
-    //     this.setState({
-    //       searchTerm: search
-    //     })
-    //   }
+ 
     render(){
         return(
             <div className="searchbar">
